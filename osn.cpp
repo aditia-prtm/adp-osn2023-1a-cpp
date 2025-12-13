@@ -4,6 +4,9 @@ using namespace std;
 
 const int maxn = 2e5+10;
 int n, dp[maxn], st[4*maxn];
+// dp[i] = maksimum jumlah hari aman sampai hari ke-i
+// Segment Tree untuk menyimpan nilai dp dan bonus kontribusi hari aman
+
 void upd(int v, int l, int r, int i, int x){
     if(l > i || r < i) return;
     if(l == r && r == i) st[v] += x;
@@ -28,8 +31,15 @@ signed main(){
     cin >> n;
     for(int i = 1; i <= n; i++){
         int a; cin >> a;
+
+        // Jika A[i] <= i, maka hari i bisa aman
+        // apabila reset terakhir terjadi di hari (i - A[i])
+        if(a <= i) upd(1, 0, n, i-a, 1);
+
         if(a <= i) upd(1, 0, n, i-a, 1);
         dp[i] = getmax(1, 0, n, 0, i-1);
+        // Ambil nilai dp maksimum dari semua kemungkinan reset sebelumnya
+
         upd(1, 0, n, i, dp[i]);
     }
     cout << n - dp[n];
