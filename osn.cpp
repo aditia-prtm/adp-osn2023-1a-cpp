@@ -32,8 +32,8 @@ signed main(){
     for(int i = 1; i <= n; i++){
         int a; cin >> a;
 
-        // Jika a[i] <= i, maka hari i bisa aman
-        // apabila reset terakhir terjadi di hari (i - A[i])
+        // jika a[i] <= i, maka hari i bisa aman
+        // apabila reset terakhir terjadi di hari (i - a[i])
         if(a <= i) upd(1, 0, n, i-a, 1);
 
         if(a <= i) upd(1, 0, n, i-a, 1);
