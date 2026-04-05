@@ -5,7 +5,7 @@ using namespace std;
 const int maxn = 2e5+10;
 int n, dp[maxn], st[4*maxn];
 // dp[i] = maksimum jumlah hari aman sampai hari ke-i
-// Segment Tree untuk menyimpan nilai dp dan bonus kontribusi hari aman
+// segment tree untuk menyimpan nilai dp dan bonus kontribusi hari aman
 
 void upd(int v, int l, int r, int i, int x){
     if(l > i || r < i) return;
@@ -32,7 +32,7 @@ signed main(){
     for(int i = 1; i <= n; i++){
         int a; cin >> a;
 
-        // Jika A[i] <= i, maka hari i bisa aman
+        // Jika a[i] <= i, maka hari i bisa aman
         // apabila reset terakhir terjadi di hari (i - A[i])
         if(a <= i) upd(1, 0, n, i-a, 1);
 
